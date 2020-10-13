@@ -26,7 +26,6 @@ import (
 	"github.com/grafana/grafana/pkg/components/simplejson"
 	"github.com/grafana/grafana/pkg/infra/log"
 	"github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/services/live"
 	"github.com/grafana/grafana/pkg/setting"
 	"github.com/grafana/grafana/pkg/tsdb"
 )
@@ -60,8 +59,6 @@ func init() {
 	tsdb.RegisterTsdbQueryEndpoint("cloudwatch", func(ds *models.DataSource) (tsdb.TsdbQueryEndpoint, error) {
 		return globalExecutor, nil
 	})
-
-	live.RegisterHandler("CloudWatch", &LogQueryRunnerSupplier{})
 }
 
 func newExecutor() *cloudWatchExecutor {
